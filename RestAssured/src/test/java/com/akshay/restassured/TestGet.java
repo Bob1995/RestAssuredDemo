@@ -1,6 +1,6 @@
 package com.akshay.restassured;
 
-import org.junit.Assert;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
@@ -18,7 +18,7 @@ public class TestGet {
 		// Validating Status code
 		System.out.println("Response status code:" + response.statusCode());
 		Assert.assertEquals(response.getStatusCode(), 200);
-		//response
+		// response
 		System.out.println("Response body:" + response.getBody().asString());
 
 		// Fetching response
