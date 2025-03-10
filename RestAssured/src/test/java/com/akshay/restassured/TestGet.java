@@ -1,24 +1,30 @@
 package com.akshay.restassured;
 
-import org.testng.Assert;
+import org.junit.Assert;
 import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-
+import io.restassured.specification.RequestSpecification;
 
 public class TestGet {
 
-	private static RestAssured restAssured;
+	private static RequestSpecification requestSpecification = null;
 
 	@Test
 	public void tc_01() {
-		restAssured = new RestAssured();
-		Response response = restAssured.when().get("http://dummy.restapiexample.com/api/v1/employees");
+		requestSpecification = RestAssured.given();
+		Response response = requestSpecification.when().get("https://fake-json-api.mock.beeceptor.com/users");
+		// Validating Status code
 		System.out.println("Response status code:" + response.statusCode());
-		System.out.println("Response body:"+ response.getBody().asString());
-		Assert.assertEquals(response.statusCode(), 200);
-		
+		Assert.assertEquals(response.getStatusCode(), 200);
+		//response
+		System.out.println("Response body:" + response.getBody().asString());
+
+		// Fetching response
+		System.out.println("Response field:name" + response.getBody().jsonPath().get("name"));
+		System.out.print("Response field:Company" + response.getBody().jsonPath().get("company"));
+
 	}
 
 }
