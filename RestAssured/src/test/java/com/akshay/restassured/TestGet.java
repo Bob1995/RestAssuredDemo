@@ -14,7 +14,7 @@ public class TestGet {
 	@Test
 	public void tc_01() {
 		requestSpecification = RestAssured.given();
-		Response response = requestSpecification.when().get("https://fake-json-api.mock.beeceptor.com/users");
+		Response response = requestSpecification.log().all().get("https://fake-json-api.mock.beeceptor.com/users");
 		// Validating Status code
 		System.out.println("Response status code:" + response.statusCode());
 		Assert.assertEquals(response.getStatusCode(), 200);
